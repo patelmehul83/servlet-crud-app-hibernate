@@ -1,0 +1,9 @@
+body {
+	background-image: url('/images/bg.jpg');
+	background-color: teal;
+}
+
+input {
+	color: maroon;
+	background-color: white;
+}
