@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<display-name>ServletCRUDAppWithHibernate</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+
+	</welcome-file-list>
+
+	<servlet>
+
+		<servlet-name>EmployeeServlet</servlet-name>
+		<servlet-class>com.servlets.EmployeeServlet</servlet-class>
+
+	</servlet>
+	<servlet>
+
+		<servlet-name>EmployeeListServlet</servlet-name>
+		<servlet-class>com.servlets.EmployeeListServlet</servlet-class>
+
+	</servlet>
+
+	<servlet>
+
+		<servlet-name>DeleteEmployeeServlet</servlet-name>
+		<servlet-class>com.servlets.DeleteEmployeeServlet</servlet-class>
+
+	</servlet>
+	<servlet>
+
+		<servlet-name>UpdateEmployeeServlet</servlet-name>
+		<servlet-class>com.servlets.UpdateEmployeeServlet</servlet-class>
+
+	</servlet>
+	<servlet-mapping>
+
+		<servlet-name>EmployeeServlet</servlet-name>
+		<url-pattern>/EmployeeServlet</url-pattern>
+
+	</servlet-mapping>
+	<servlet-mapping>
+
+		<servlet-name>EmployeeListServlet</servlet-name>
+		<url-pattern>/EmployeeListServlet</url-pattern>
+
+	</servlet-mapping>
+	<servlet-mapping>
+
+		<servlet-name>DeleteEmployeeServlet</servlet-name>
+		<url-pattern>/DeleteEmployeeServlet</url-pattern>
+
+	</servlet-mapping>
+	<servlet-mapping>
+
+		<servlet-name>UpdateEmployeeServlet</servlet-name>
+		<url-pattern>/UpdateEmployeeServlet</url-pattern>
+
+	</servlet-mapping>
+</web-app>
