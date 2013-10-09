@@ -35,14 +35,20 @@ public class EmployeeListServlet extends HttpServlet {
 			out.println("<body>");
 
 			out.println("<h1 align = 'center'>Servlet CRUD App</h1><hr/><br>");
+			out.println("<p align = 'center'><font size = '5' color='white'>Employee Details</font></p><br>");
 
 			out.println("<form method='POST' action='DeleteEmployeeServlet'>");
 			out.println("<table bgcolor='pink' align='center' cellpadding='15'>");
+			out.println("</form>");
 
-			out.println("<th></th><th> EMPLOYEE ID  </th>");
-			out.println("<th> EMPLOYEE NAME  </th>");
-			out.println("<th> EMPLOYEE SALARY  </th>");
-			out.println("<th> ACTION  </th>");
+			out.println("<tr><td><input type='submit' value='delete'></td>");
+			out.println("<form method='POST' action ='EmployeeListServlet'>");
+			out.println("<td><input type='text' name = 'searchId' value='Enter Id' size='8'><input type='submit' value='Search'></td></tr>");
+			out.println("</form>");
+			out.println("<th></th><th>ID</th>");
+			out.println("<th>NAME</th>");
+			out.println("<th>SALARY</th>");
+			out.println("<th> ACTION </th>");
 
 			List<Employee> employeeList = employeeService.getAll();
 
@@ -62,9 +68,8 @@ public class EmployeeListServlet extends HttpServlet {
 
 			}
 
-			out.println("<tr><td><input type='submit' value='delete'></td></tr>");
 			out.println("</table>");
-			out.println("</form>");
+
 			out.println("<p align='center'>| <a href='index.html'>HOME</a> | | <a href='createEmployee.html'>ADD MORE</a> |</p>");
 			out.println("</body>");
 			out.println("</body>");
@@ -75,6 +80,65 @@ public class EmployeeListServlet extends HttpServlet {
 			e.printStackTrace();
 
 		} finally {
+			if (out != null) {
+				out.close();
+			}
+		}
+
+	}
+
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		int id = Integer.parseInt(request.getParameter("searchId"));
+
+		EmployeeService employeeService = new EmployeeServiceImpl();
+
+		Employee employee = employeeService.findById(id);
+
+		if (employee == null) {
+			return;
+		}
+
+		response.setContentType("text/html");
+
+		PrintWriter out = null;
+
+		try {
+			out = response.getWriter();
+
+			out.println("<html>");
+			out.println("<head><title>Employee List</title>");
+			out.println("<link rel = 'stylesheet' type='text/css' href='css/mycss.css'></head>");
+
+			out.println("<body>");
+
+			out.println("<h1 align = 'center'>Servlet CRUD App</h1><hr/><br>");
+			out.println("<p align = 'center'><font size = '5' color='white'>Employee Details</font></p><br>");
+
+			out.println("<table bgcolor='pink' align='center' cellpadding='15'>");
+
+			out.println("<th>ID</th>");
+			out.println("<th>NAME</th>");
+			out.println("<th>SALARY</th>");
+
+			out.println("<tr>");
+			out.println("<td>" + employee.getId() + "</td>");
+			out.println("<td>" + employee.getName() + "</td>");
+			out.println("<td>" + employee.getSalary() + "</td>");
+			out.println("</tr>");
+
+			out.println("</table>");
+			out.println("<p align='center'>| <a href='EmployeeListServlet'>List Employees</a> | <a href='index.html'>HOME</a> | <a href='createEmployee.html'>ADD MORE</a> |</p>");
+			out.println("</body>");
+			out.println("</html>");
+
+		} catch (Exception ex) {
+
+			ex.printStackTrace();
+
+		} finally {
+
 			if (out != null) {
 				out.close();
 			}
